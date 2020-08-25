@@ -1,4 +1,3 @@
-
 # Video Gambling Data and Pandas 🧐
 <img src="https://media.tegna-media.com/assets/WQAD/images/01c4abef-ca79-4b9b-b3f7-2ad2e856b34b/01c4abef-ca79-4b9b-b3f7-2ad2e856b34b_750x422.jpg" width="460"/>
 
@@ -27,9 +26,10 @@ from IPython.display import display, Markdown
 def markdown(text):
     display(Markdown(text))
     
-#used for tests
-from test_background import pkl_dump, test_dict, run_test
+from test_scripts.test_class import Test
 import numpy as np
+
+testing = Test()
 ```
 
 **Our data is located** within the ```data``` folder of this repo.
@@ -986,14 +986,16 @@ df.info()
     <class 'pandas.core.frame.DataFrame'>
     Index: 835 entries, Abingdon to Zion
     Data columns (total 8 columns):
-    establishment_count    835 non-null int64
-    terminal_count         835 non-null int64
-    amount_played          835 non-null float64
-    amount_won             835 non-null float64
-    nti_tax                835 non-null float64
-    state_share            835 non-null float64
-    municipality_share     835 non-null float64
-    population             835 non-null object
+     #   Column               Non-Null Count  Dtype  
+    ---  ------               --------------  -----  
+     0   establishment_count  835 non-null    int64  
+     1   terminal_count       835 non-null    int64  
+     2   amount_played        835 non-null    float64
+     3   amount_won           835 non-null    float64
+     4   nti_tax              835 non-null    float64
+     5   state_share          835 non-null    float64
+     6   municipality_share   835 non-null    float64
+     7   population           835 non-null    object 
     dtypes: float64(5), int64(2), object(1)
     memory usage: 58.7+ KB
 
@@ -1266,29 +1268,21 @@ highest_machines_percapita = \
 highest_machines_percapita = list(highest_machines_percapita)
 highest_machines_percapita
 
-#used for testing
-pkl_dump([(
-    highest_machines_percapita,
-    'highest_machines_percapita'
-)])
+
+# Used for testing
+testing.save(highest_machines_percapita,'highest_machines_percapita')
 ```
-
-    can"t dump, highest_machines_percapita already exists
-
 
 Run the cell below to see if you identified the correct Municipalities!
 
 
 ```python
 
-run_test(highest_machines_percapita, 'highest_machines_percapita')
+testing.run_test(highest_machines_percapita, 'highest_machines_percapita')
 ```
 
 
-
-
-    'Hey, you did it.  Good job.'
-
+✅ **Hey, you did it.  Good job.**
 
 
 **Next,** let's figure out how much money players lost for each municipality.
@@ -1585,22 +1579,22 @@ highest_loss_percapita = list(
 
 highest_loss_percapita
 
-#used for tests
-pkl_dump([(
+# Used for testing
+testing.save(
     highest_loss_percapita,
-    'highest_loss_percapita'
-)])
+   'highest_loss_percapita')
 ```
-
-    can"t dump, highest_loss_percapita already exists
-
 
 Run the cell below to see if you idenitified the correct municipalities!
 
 
 ```python
-run_test(highest_loss_percapita, 'highest_loss_percapita')
+testing.run_test(highest_loss_percapita, 'highest_loss_percapita')
 ```
+
+
+✅ **Hey, you did it.  Good job.**
+
 
 <u>In the cell below:</u>
 1. Filter our dataframe to contain municipalities with a ```loss_percapita``` of 406 or greater. 
@@ -1638,32 +1632,27 @@ low_loss_average_population = (
 
 low_loss_average_population
 
-#used for tests
-pkl_dump([
-    (high_loss_average_population,
-    'high_loss_average_population'
-    ),
-    (low_loss_average_population,
-    'low_loss_average_population'
-    )
-])
+# Used for testing
+testing.save(
+    high_loss_average_population,
+   'high_loss_average_population')
+
+testing.save(low_loss_average_population,
+            'low_loss_average_population')
 ```
-
-    can"t dump, high_loss_average_population already exists
-
 
 Run the cell below to see if you identified the correct averages!
 
 
 ```python
-high_result = run_test(high_loss_average_population, 'high_loss_average_population')
-low_result = run_test(low_loss_average_population, 'low_loss_average_population')
-
-print(f'high loss test result: {high_result}')
-print
-print(f'low loss test result: {low_result}')
+high_result = testing.run_test(high_loss_average_population, 'high_loss_average_population')
+low_result = testing.run_test(low_loss_average_population, 'low_loss_average_population')
 ```
 
-    high loss test result: Hey, you did it.  Good job.
-    low loss test result: Hey, you did it.  Good job.
+
+✅ **Hey, you did it.  Good job.**
+
+
+
+✅ **Hey, you did it.  Good job.**
 
