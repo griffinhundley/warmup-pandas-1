@@ -1,4 +1,3 @@
-
 # Video Gambling Data and Pandas 🧐
 <img src="https://media.tegna-media.com/assets/WQAD/images/01c4abef-ca79-4b9b-b3f7-2ad2e856b34b/01c4abef-ca79-4b9b-b3f7-2ad2e856b34b_750x422.jpg" width="460"/>
 
@@ -27,8 +26,11 @@ def markdown(text):
     display(Markdown(text))
 
 #used for tests
-from test_background import pkl_dump, test_dict, run_test
+#testing
+from test_scripts.test_class import Test
 import numpy as np
+
+testing = Test()
 ```
 
 **Our data is located** within the ```data``` folder of this repo.
@@ -114,10 +116,6 @@ string = '''<u>Length before merge:</u> **{}**'''.format(length_before_merge)
 markdown(string)
 ```
 
-
-<u>Length before merge:</u> **None**
-
-
 *Merge Time*
 
 
@@ -146,10 +144,6 @@ length_after_merge = None
 string = '''<u>Length after merge:</u> **{}**'''.format(length_after_merge,)
 markdown(string)
 ```
-
-
-<u>Length after merge:</u> **None**
-
 
 In the cell below, set the Municipality column as the index using the ```.set_index()``` method.
 
@@ -248,15 +242,8 @@ Run the cell below to see if you identified the correct Municipalities!
 
 
 ```python
-run_test(highest_machines_percapita, 'highest_machines_percapita')
+testing.run_test(highest_machines_percapita, 'highest_machines_percapita')
 ```
-
-
-
-
-    'Hey, you did it.  Good job.'
-
-
 
 **Next,** let's figure out how much money players lost for each municipality.
 
@@ -305,15 +292,8 @@ Run the cell below to see if you idenitified the correct municipalities!
 
 
 ```python
-run_test(highest_loss_percapita, 'highest_loss_percapita')
+testing.run_test(highest_loss_percapita, 'highest_loss_percapita')
 ```
-
-
-
-
-    'Hey, you did it.  Good job.'
-
-
 
 <u>In the cell below:</u>
 1. Filter our dataframe to contain municipalities with a ```loss_percapita``` of 406 or greater. 
@@ -338,15 +318,6 @@ Run the cell below to see if you identified the correct averages!
 
 
 ```python
-high_result = run_test(high_loss_average_population, 'high_loss_average_population')
-low_result = run_test(low_loss_average_population, 'low_loss_average_population')
-
-print(f'high loss test result: {high_result}')
-print
-print(f'low loss test result: {low_result}')
-```
-
-
-```python
-
+high_result = testing.run_test(high_loss_average_population, 'high_loss_average_population')
+low_result = testing.run_test(low_loss_average_population, 'low_loss_average_population')
 ```
